@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  env1:
+    docker:
+      - image: circleci/golang:1.14.1
+    steps:
+      - setup_remote_docker
+      - run: docker version
+      - run: docker context ls
+      - run: docker buildx ls
+      - run: echo "hello world"
+workflows:
+  version: 2
+  one:
+    jobs:
+      - env1
