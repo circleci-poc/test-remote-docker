@@ -8,8 +8,11 @@ jobs:
           version: 18.09.3
       - run: docker version
       - run: docker context ls
+      - run: |
+          git clone git://github.com/docker/buildx && cd buildx
+          make install
       - run: docker buildx ls
-      - run: echo "hello world"
+      - run: docker buildx build --platform linux/amd64,linux/arm64 .
 workflows:
   version: 2
   one:
